@@ -1,0 +1,45 @@
+{
+  "name": "domain-storage",
+  "version": "0.1.0",
+  "description": "Provides a mechanism to share parent domain's localStorage with subdomains using an iframe and postMessage API",
+  "main": "lib/index.js",
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "repository": "git@github.com:adeelnawaz/domain-storage.git",
+  "author": "Muhammad Adeel Nawaz <anawaz@ekomi-services.com>",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/preset-env": "^7.14.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.36.1",
+    "webpack-cli": "^4.6.0"
+  },
+  "scripts": {
+    "clean": "rimraf lib && rimraf dist",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "cross-env NODE_ENV=development webpack --bail",
+    "build:umd:min": "cross-env NODE_ENV=production webpack --bail",
+    "build": "npm run clean && npm run lint && npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "lint": "npx eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
