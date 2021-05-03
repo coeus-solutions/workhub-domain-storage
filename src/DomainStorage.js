@@ -127,8 +127,9 @@ const initIframe = () => {
     _iframe = window.document.createElement('iframe')
 
     // todo change to hidden
-    _iframe.width = '100%'
-    _iframe.height = 200
+    _iframe.style.display = 'none'
+    _iframe.width = '0'
+    _iframe.height = '0'
 
     window.document.body.appendChild(_iframe)
   }
@@ -167,9 +168,9 @@ const initIframe = () => {
 DomainStorage.prototype = {
   setServerUrl,
   setFailTimeout,
-  getItem, // (key: string): Promise
-  setItem, // (key: string, value: string): Promise
-  removeItem // (key: string): Promise
+  getItem,
+  setItem,
+  removeItem
 }
 
 export default (new DomainStorage())
