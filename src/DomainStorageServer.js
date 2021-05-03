@@ -50,13 +50,15 @@ const isMessageTrusted = (origin) => {
 }
 
 const handleActionRequest = (action, actionId, props) => {
+  const key = `DomainStorage::${props.key}`
+
   switch (action) {
     case 'getItem':
-      return respond(actionId, true, localStorage.getItem(props.key))
+      return respond(actionId, true, localStorage.getItem(key))
     case 'setItem':
-      return respond(actionId, true, localStorage.setItem(props.key, props.value))
+      return respond(actionId, true, localStorage.setItem(key, props.value))
     case 'removeItem':
-      return respond(actionId, true, localStorage.removeItem(props.key))
+      return respond(actionId, true, localStorage.removeItem(key))
     default:
       return respond(actionId, false, new Error('Invalid action request'))
   }
