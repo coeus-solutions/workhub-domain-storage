@@ -46,6 +46,7 @@ const DomainStorageServer = function () {
 }
 
 const isMessageTrusted = (origin) => {
+  // todo also verify the source of the message
   return (new URL(origin)).hostname.endsWith(window.location.hostname)
 }
 
