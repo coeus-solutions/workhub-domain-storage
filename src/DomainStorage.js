@@ -130,6 +130,7 @@ const initIframe = () => {
     _iframe.style.display = 'none'
     _iframe.width = '0'
     _iframe.height = '0'
+    _iframe.src = _serverUrl
 
     window.document.body.appendChild(_iframe)
   }
