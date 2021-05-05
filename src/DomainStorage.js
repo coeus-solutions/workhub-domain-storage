@@ -58,6 +58,7 @@ const DomainStorage = function () {
 }
 
 const isMessageTrusted = (origin) => {
+  // todo also verify the source of the message
   return _serverUrl && origin === (new URL(_serverUrl)).origin
 }
 
@@ -123,6 +124,7 @@ const setFailTimeout = timeout => {
 }
 
 const initIframe = () => {
+  // todo append iframe only when dom is ready
   if (_iframe === undefined) {
     _iframe = window.document.createElement('iframe')
 
@@ -130,6 +132,7 @@ const initIframe = () => {
     _iframe.style.display = 'none'
     _iframe.width = '0'
     _iframe.height = '0'
+    _iframe.src = _serverUrl
 
     window.document.body.appendChild(_iframe)
   }
