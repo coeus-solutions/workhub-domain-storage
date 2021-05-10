@@ -52,9 +52,13 @@ const start = () => {
   }, _referrerOrigin)
 }
 
+const getParentDomain = hostname => {
+  return hostname.split('.').slice(-2).join('.')
+}
+
 const isMessageTrusted = (origin) => {
   // todo also verify the source of the message
-  return (new URL(origin)).hostname.endsWith(window.location.hostname)
+  return getParentDomain((new URL(origin)).hostname) === getParentDomain(window.location.hostname)
 }
 
 const handleActionRequest = (action, actionId, props) => {
