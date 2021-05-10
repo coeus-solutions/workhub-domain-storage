@@ -12,18 +12,27 @@ const DomainStorageServer = function () {
     return _this
   }
 
-  _referrerOrigin = (new URL(document.referrer)).origin
-
   // Check for support
   if (!window || !window.postMessage) {
     console.error('Missing feature support. Exiting!')
     return
   }
+  // Check for referrer
+  if (!document.referrer) {
+    console.error('No referrer found')
+    return
+  }
+
+  _referrerOrigin = (new URL(document.referrer)).origin
 
   // todo initialize a listener that listens, takes action, and responds with another message
   // Save a reference to this
   _this = this
 
+  return _this
+}
+
+const start = () => {
   // Listen to messages
   window.addEventListener('message', (event) => {
     if (
@@ -41,8 +50,6 @@ const DomainStorageServer = function () {
     type: 'domain_storage_msg',
     ready: true
   }, _referrerOrigin)
-
-  return _this
 }
 
 const isMessageTrusted = (origin) => {
@@ -76,8 +83,7 @@ const respond = (actionId, success, response) => {
 
 // Instance methods
 DomainStorageServer.prototype = {
-  // Add exposed functions here e.g.
-  // exampleFunc: () => console.log("exampleFunc called"),
+  start
 }
 
 export default (new DomainStorageServer())
