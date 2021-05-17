@@ -40,7 +40,6 @@
     "build:umd:min": "cross-env NODE_ENV=production webpack --bail",
     "build": "npm run clean && npm run lint && npm run build:lib && npm run build:umd && npm run build:umd:min",
     "lint": "npx eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
