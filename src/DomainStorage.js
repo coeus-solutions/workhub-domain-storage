@@ -116,6 +116,8 @@ const setServerUrl = url => {
   initIframe()
 }
 
+const getServerUrl = () => _serverUrl
+
 const setFailTimeout = timeout => {
   if (typeof timeout !== 'number') {
     throw new Error('Timeout must be a number')
@@ -170,6 +172,7 @@ const initIframe = () => {
 // Instance methods
 DomainStorage.prototype = {
   setServerUrl,
+  getServerUrl,
   setFailTimeout,
   getItem,
   setItem,
