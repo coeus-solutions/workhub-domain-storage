@@ -1065,6 +1065,10 @@ var setServerUrl = function setServerUrl(url) {
   initIframe();
 };
 
+var getServerUrl = function getServerUrl() {
+  return _serverUrl;
+};
+
 var setFailTimeout = function setFailTimeout(timeout) {
   if (typeof timeout !== 'number') {
     throw new Error('Timeout must be a number');
@@ -1117,6 +1121,7 @@ var initIframe = function initIframe() {
 
 DomainStorage.prototype = {
   setServerUrl: setServerUrl,
+  getServerUrl: getServerUrl,
   setFailTimeout: setFailTimeout,
   getItem: getItem,
   setItem: setItem,
