@@ -59,8 +59,9 @@ const getParentDomain = hostname => {
 }
 
 const isMessageTrusted = (origin) => {
+  const host = (new URL(origin)).hostname
   // todo also verify the source of the message
-  return _trustedDomains.includes(origin) || getParentDomain((new URL(origin)).hostname) === getParentDomain(window.location.hostname)
+  return _trustedDomains.includes(host) || getParentDomain(host) === getParentDomain(window.location.hostname)
 }
 
 const handleActionRequest = (action, actionId, props) => {
@@ -88,7 +89,7 @@ const respond = (actionId, success, response) => {
 }
 
 const setTrustedDomains = (trustedDomains) => {
-  if (trustedDomains.constructor === Array) {
+  if (trustedDomains instanceof Array) {
     _trustedDomains = trustedDomains
   }
 }
