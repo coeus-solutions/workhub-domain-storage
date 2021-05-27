@@ -5,6 +5,8 @@
 let _this,
   _referrerOrigin
 
+let _trustedDomains = []
+
 // DomainStorageServer constructor
 const DomainStorageServer = function () {
   // Ensure singleton instance
@@ -58,7 +60,7 @@ const getParentDomain = hostname => {
 
 const isMessageTrusted = (origin) => {
   // todo also verify the source of the message
-  return getParentDomain((new URL(origin)).hostname) === getParentDomain(window.location.hostname)
+  return _trustedDomains.includes(origin) || getParentDomain((new URL(origin)).hostname) === getParentDomain(window.location.hostname)
 }
 
 const handleActionRequest = (action, actionId, props) => {
@@ -85,9 +87,16 @@ const respond = (actionId, success, response) => {
   }, _referrerOrigin)
 }
 
+const setTrustedDomains = (trustedDomains) => {
+  if (trustedDomains.constructor === Array) {
+    _trustedDomains = trustedDomains
+  }
+}
+
 // Instance methods
 DomainStorageServer.prototype = {
-  start
+  start,
+  setTrustedDomains
 }
 
 export default (new DomainStorageServer())
