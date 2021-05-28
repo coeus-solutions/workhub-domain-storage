@@ -59,8 +59,9 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
  * DomainStorageServer library
  * Provides a mechanism to share local storage between a parent domain and subdomains
  */
-var _this, _referrerOrigin; // DomainStorageServer constructor
+var _this, _referrerOrigin;
 
+var _trustedDomains = []; // DomainStorageServer constructor
 
 var DomainStorageServer = function DomainStorageServer() {
   // Ensure singleton instance
@@ -113,8 +114,9 @@ var getParentDomain = function getParentDomain(hostname) {
 };
 
 var isMessageTrusted = function isMessageTrusted(origin) {
-  // todo also verify the source of the message
-  return getParentDomain(new URL(origin).hostname) === getParentDomain(window.location.hostname);
+  var hostname = new URL(origin).hostname; // todo also verify the source of the message
+
+  return _trustedDomains.includes(hostname) || getParentDomain(hostname) === getParentDomain(window.location.hostname);
 };
 
 var handleActionRequest = function handleActionRequest(action, actionId, props) {
@@ -142,11 +144,18 @@ var respond = function respond(actionId, success, response) {
     success: success,
     response: response
   }, _referrerOrigin);
+};
+
+var setTrustedDomains = function setTrustedDomains(trustedDomains) {
+  if (trustedDomains instanceof Array) {
+    _trustedDomains = trustedDomains;
+  }
 }; // Instance methods
 
 
 DomainStorageServer.prototype = {
-  start: start
+  start: start,
+  setTrustedDomains: setTrustedDomains
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new DomainStorageServer());
 __webpack_exports__ = __webpack_exports__.default;
