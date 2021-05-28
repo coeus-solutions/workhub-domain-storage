@@ -114,9 +114,9 @@ var getParentDomain = function getParentDomain(hostname) {
 };
 
 var isMessageTrusted = function isMessageTrusted(origin) {
-  var host = new URL(origin).hostname; // todo also verify the source of the message
+  var hostname = new URL(origin).hostname; // todo also verify the source of the message
 
-  return _trustedDomains.includes(host) || getParentDomain(host) === getParentDomain(window.location.hostname);
+  return _trustedDomains.includes(hostname) || getParentDomain(hostname) === getParentDomain(window.location.hostname);
 };
 
 var handleActionRequest = function handleActionRequest(action, actionId, props) {
