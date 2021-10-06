@@ -48,7 +48,7 @@ const start = () => {
     handleActionRequest(action, actionId, props)
   }, false)
 
-  window.top.postMessage({
+  window.parent.postMessage({
     type: 'domain_storage_msg',
     ready: true
   }, _referrerOrigin)
@@ -80,7 +80,7 @@ const handleActionRequest = (action, actionId, props) => {
 }
 
 const respond = (actionId, success, response) => {
-  window.top.postMessage({
+  window.parent.postMessage({
     type: 'domain_storage_msg',
     actionId,
     success,
