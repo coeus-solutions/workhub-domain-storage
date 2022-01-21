@@ -21,7 +21,7 @@ The setup requeres steps on both parent domain (to host the server library) and 
 
 1. Install the package with npm
     ```shell
-    npm install adeelnawaz/domain-storage
+    npm install coeus-solutions/workhub-domain-storage
     ```
 1. Create a page that loads the `DomainStorageServer` module. This can be done on any page (e.g. homepage, etc) but it
    is recommended to add a dedicated route that renders an empty page with only `DomainStorageServer` module loaded.
@@ -64,7 +64,7 @@ window).
 
 1. Install the package with npm
     ```shell
-    npm install adeelnawaz/domain-storage
+    npm install coeus-solutions/workhub-domain-storage
     ```
 1. Use the `DomainStorage` module to read / write to shared domain storage
 
