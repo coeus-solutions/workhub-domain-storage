@@ -1,0 +1,20 @@
+- label: "JIRA"
+  message: "$issuePrefix"
+  color: "blue"
+  url: "https://coeus-solutions.atlassian.net/browse/$issuePrefix"
+  when: "$issuePrefix"
+
+- label: "PR Size"
+  message: "Small"
+  color: "green"
+  when: "$additions <= 50"
+
+- label: "PR Size"
+  message: "Medium"
+  color: "yellow"
+  when: "$additions > 50 && $additions < 100"
+
+- label: "PR Size"
+  message: "Large"
+  color: "red"
+  when: "$additions >= 100"
