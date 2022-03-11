@@ -2,7 +2,9 @@
 Describe your code changes in detail for reviewers. Explain the technical solution you have provided and how it fixes the issue.
 
 ## How to test
-Describe what steps should be followed in order to test the task
+Describe what steps should be followed in order to test the task (in bullet points format)
+- Step 1
+- Step 2
 
 ## Did you test this feature on all browsers ? (if applicable)
 
